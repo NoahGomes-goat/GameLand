@@ -13,6 +13,7 @@ public class Character {
     public Image pic;
     public Rectangle healthbar;
     public int health;
+    public boolean isIntersecting=false;
 
     //have a constructor
     public Character(int pXpos, int pYpos, int pDx, int pDy) {
@@ -24,7 +25,7 @@ public class Character {
         height = 80;
         isAlive = true;
         health = width;
-        rec = new Rectangle( xpos, ypos, width, height);
+        rec = new Rectangle(xpos, ypos, width, height);
         rec = new Rectangle(xpos, ypos, width, height);
         healthbar = new Rectangle(xpos, ypos, health, 5);
 
@@ -65,16 +66,16 @@ public class Character {
     public void wrapMove() {
 
         if (xpos > 1000) {
-            xpos = 0-width;
+            xpos = 0 - width;
         }
         //DO Now: create a wrapping move that works on all four walls.
-        if(ypos > 700) {
-           ypos = 0-height;
+        if (ypos > 700) {
+            ypos = 0 - height;
         }
-        if(xpos < 0 && dx<0){
+        if (xpos < 0 && dx < 0) {
             xpos = 1000;
         }
-        if(ypos < 0 && dy<0){
+        if (ypos < 0 && dy < 0) {
             ypos = 700;
         }
         xpos = xpos + dx;
@@ -83,7 +84,13 @@ public class Character {
         healthbar = new Rectangle(xpos, ypos, health, 5);
 
     }
-}
 
+    public void controlMove() {
+
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+        rec = new Rectangle(xpos, ypos, width, height);
+    }
+}
 
 
